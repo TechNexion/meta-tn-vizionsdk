@@ -2,25 +2,20 @@ SUMMARY = "TechNexion VizionSDK"
 LICENSE = "CLOSED"
 LICENSE_FLAGS = "commercial_tn"
 
-SRCSERVER = "git://github.com/technexion/tn-vizionsdk.git;protocol=https"
+SRCSERVER = "git://github.com/TechNexion-Vision/vizionviewer.git;protocol=https"
 SRCOPTIONS = ""
-SRCBRANCH = "master"
+SRCBRANCH = "main"
 SRC_URI = "${SRCSERVER};branch=${SRCBRANCH};${SRCOPTIONS}"
-SRCREV = "${AUTOREV}"
+#SRCREV = "${AUTOREV}"
+SRCREV = "417a85330fd0f37515375fd7a2029d4a0c44fd58"
+PV = "23.04.1"
 
-#DEPENDS += "qtbase"
-RDEPENDS:${PN} += "qtbase"
-#BBCLASSEXTEND = "native nativesdk"
+DEPENDS += "libdrm"
+RDEPENDS:${PN} += "libdrm-dev"
 
-#PACKAGECONFIG ??= " \
-#    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
-#    ${@bb.utils.contains('DISTRO_FEATURES', 'weston-xwayland', 'weston-xwayland', '', d)} \
-#"
-#PACKAGECONFIG[wayland] = "-Dwayland=enabled,-Dwayland=disabled,wayland-native wayland wayland-protocols libdrm"
-#PACKAGECONFIG[x11] = "-Dx11=enabled,-Dx11=disabled,libxcb libxkbcommon"
+S = "${WORKDIR}/git/vizionsdk"
 
-PV = "git${SRCPV}"
-S = "${WORKDIR}/git"
+INSANE_SKIP:${PN} += "dev-deps"
 
 do_install() {
 	mv ${S}/libVizionSDK.so libVizionSDK.so.${PV}
