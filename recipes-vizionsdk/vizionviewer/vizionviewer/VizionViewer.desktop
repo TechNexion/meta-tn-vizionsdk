@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=VizionViewer
+Comment=
+Version=23.04.1
+Exec=/opt/VizionViewer/VizionViewer.sh
+Path=/opt/VizionViewer
+Icon=/opt/VizionViewer/icons/icon.png
+Terminal=false
+Type=Application
+Categories=Utility
+StartupNotify=true
