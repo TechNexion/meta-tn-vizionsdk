@@ -1,0 +1,4 @@
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out this entry, but any other modifications may be lost.
+deb [arch=arm64] https://download.technexion.com/apt/vizionsdk stable main
+deb [arch=arm64] https://download.technexion.com/apt/vizionviewer stable main
