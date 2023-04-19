@@ -8,7 +8,7 @@ PV = "23.04.1"
 
 SRC_URI += "file://88-cyusb.rules"
 DEPENDS += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'libdrm libusb1 bash', d)}"
-RDEPENDS:${PN} += "libdrm-dev"
+RDEPENDS:${PN} += "libdrm-dev tn-apt-list"
 RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'libdrm-dev libusb1 bash', d)}"
 
 S = "${WORKDIR}/git/vizionsdk/usr"
