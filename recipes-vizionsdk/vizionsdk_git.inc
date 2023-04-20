@@ -1,7 +1,6 @@
 SRCSERVER = "git://github.com/TechNexion-Vision/vizionviewer.git;protocol=https"
-#SRCSERVER = "git://gitlab.com/technexion1/tn-vizionviewer.git;protocol=https"
 SRCOPTIONS = ""
 SRCBRANCH = "main"
 SRC_URI = "${SRCSERVER};branch=${SRCBRANCH};${SRCOPTIONS}"
 #SRCREV = "${AUTOREV}"
-SRCREV = "84fd81929094915c61a7fc42e211f2c4721bf4ad"
+SRCREV = "201cc52f8a22b39d9d98eb489a02dd37a0fe70fe"
