@@ -4,6 +4,8 @@ LICENSE_FLAGS = "commercial_tn"
 
 SRC_URI = "file://technexion.gpg file://vizionsdk.list"
 
+RDEPENDS:${PN} += "gnupg"
+
 S = "${WORKDIR}"
 
 do_install() {
