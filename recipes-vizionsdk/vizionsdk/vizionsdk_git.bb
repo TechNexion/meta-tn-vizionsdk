@@ -18,6 +18,11 @@ INSANE_SKIP:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm'
 INSANE_SKIP:${PN} += "dev-deps"
 FILES:${PN} += "/usr/local/bin/*"
 
+# keep package name as vizionsdk
+DEBIAN_NOAUTONAME:${PN} := "1"
+DEBIAN_NOAUTONAME:${PN}-dev := "1"
+DEBIAN_NOAUTONAME:${PN}-dbg := "1"
+
 do_install() {
 	_lib_n="libVizionSDK.so"
 	# Find the real libVizionSDK.so
