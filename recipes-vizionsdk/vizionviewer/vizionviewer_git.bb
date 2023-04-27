@@ -4,7 +4,7 @@ LICENSE_FLAGS = "commercial_tn"
 
 include recipes-vizionsdk/vizionsdk_git.inc
 
-PV = "23.04.2"
+PV = "git-${SRCPV}"
 
 DEPENDS += "vizionsdk"
 RDEPENDS:${PN} += "vizionsdk-dev"
