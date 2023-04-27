@@ -4,15 +4,15 @@ LICENSE_FLAGS = "commercial_tn"
 
 include recipes-vizionsdk/vizionsdk_git.inc
 
-PV = "23.04.1"
+PV = "git-${SRCPV}"
 
 SRC_URI += "file://88-cyusb.rules"
 
 DEPENDS += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'libdrm libusb1 bash', d)}"
-RDEPENDS:${PN} += "libdrm-dev tn-apt-list"
+RDEPENDS:${PN} += "libdrm-dev"
 RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'libdrm-dev libusb1 bash', d)}"
 
-S = "${WORKDIR}/git/vizionsdk/usr"
+S = "${WORKDIR}/git/vizionsdk"
 
 INSANE_SKIP:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', 'file-rdeps', '', d)}"
 INSANE_SKIP:${PN} += "dev-deps"
@@ -25,8 +25,9 @@ DEBIAN_NOAUTONAME:${PN}-dbg := "1"
 
 do_install() {
 	_lib_n="libVizionSDK.so"
+	_usr_d="${S}/usr"
 	# Find the real libVizionSDK.so
-	_lst=$(ls ${S}/lib/${_lib_n}* | xargs)
+	_lst=$(ls ${_usr_d}/lib/${_lib_n}* | xargs)
 	for _l in ${_lst}; do
 		test -L ${_l} && continue
 		_lib=$(basename ${_l})
@@ -34,7 +35,7 @@ do_install() {
 
 	# Install libVizionSDK.so
 	if test ! -z ${_lib}; then
-		install -D -t ${D}${libdir} -m 0644 ${S}/lib/${_lib}
+		install -D -t ${D}${libdir} -m 0644 ${_usr_d}/lib/${_lib}
 		# get version
 		_lib_v=$(echo ${_lib} | cut -f3- -d'.')
 		# combine majro version
@@ -46,6 +47,6 @@ do_install() {
 
 	# Install configurations of Cypress USB
 	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${WORKDIR}/88-cyusb.rules
-	install -D -t ${D}${sysconfdir} -m 0644 ${S}/share/vizionsdk/driver/cyusb.conf
-	install -D -t ${D}/usr/local/bin -m 0755 ${S}/share/vizionsdk/driver/cy_renumerate.sh
+	install -D -t ${D}${sysconfdir} -m 0644 ${_usr_d}/share/vizionsdk/driver/cyusb.conf
+	install -D -t ${D}/usr/local/bin -m 0755 ${_usr_d}/share/vizionsdk/driver/cy_renumerate.sh
 }
