@@ -6,6 +6,7 @@ include recipes-vizionsdk/vizionsdk_git.inc
 
 PV = "git-${SRCPV}"
 
+SRC_URI += "file://weston.ini"
 DEPENDS += "vizionsdk"
 RDEPENDS:${PN} += "vizionsdk-dev"
 DEPENDS += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'qtbase qtmultimedia qtdeclarative libjpeg-turbo', d)}"
@@ -14,7 +15,7 @@ RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '
 S = "${WORKDIR}/git/vizionviewer"
 
 INSANE_SKIP:${PN} += "dev-deps file-rdeps already-stripped"
-FILES:${PN} += "/opt/* /usr/share/polkit-1/actions/*"
+FILES:${PN} += "/opt/* ${datadir}/polkit-1/actions/* ${sysconfdir}/xdg/weston/*"
 
 EXCLUDE_FROM_SHLIBS = "1"
 
@@ -31,4 +32,6 @@ do_install() {
 	# Install application icon
 	install -D -t ${D}${datadir}/applications -m 0755 ${S}/usr/share/applications/*
 	install -D -t ${D}${datadir}/polkit-1/actions -m 0644 ${S}/usr/share/polkit-1/actions/*
+	# Install weston.ini
+	install -D -t ${D}${sysconfdir}/xdg/weston -m 0644 ${WORKDIR}/weston.ini
 }
