@@ -4,7 +4,7 @@ LICENSE_FLAGS = "commercial_tn"
 
 SRC_URI = "file://technexion.gpg file://vizionsdk.list"
 
-RDEPENDS:${PN} += "gnupg"
+RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'gnupg', d)}"
 
 S = "${WORKDIR}"
 
