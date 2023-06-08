@@ -7,7 +7,6 @@ include recipes-vizionsdk/vizionsdk_git.inc
 PV = "git-${SRCPV}"
 
 DEPENDS += "vizionsdk"
-RDEPENDS:${PN} += "vizionsdk-dev"
 DEPENDS += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'qtbase qtmultimedia qtdeclarative libjpeg-turbo', d)}"
 RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'qtbase qtmultimedia qtdeclarative libturbojpeg libxkbcommon', d)}"
 
