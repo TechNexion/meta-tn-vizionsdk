@@ -8,14 +8,13 @@ PV = "git-${SRCPV}"
 
 SRC_URI += "file://88-cyusb.rules"
 
-DEPENDS += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'libdrm libusb1 bash', d)}"
-RDEPENDS:${PN} += "libdrm-dev"
-RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'libdrm-dev libusb1 bash', d)}"
+DEPENDS += "tn-apt-list"
+RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', 'libdrm libudev', 'libdrm-dev libusb1', d)}"
+RDEPENDS:${PN} += "libudev bash"
 
 S = "${WORKDIR}/git/vizionsdk"
 
-INSANE_SKIP:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', 'file-rdeps', '', d)}"
-INSANE_SKIP:${PN} += "dev-deps"
+INSANE_SKIP:${PN} += "dev-deps file-rdeps"
 FILES:${PN} += "/usr/local/bin/*"
 
 # keep package name as vizionsdk
