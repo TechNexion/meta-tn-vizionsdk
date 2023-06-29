@@ -1,5 +1,5 @@
-ROOTFS_POSTPROCESS_COMMAND:append:mx93-nxp-bsp = "install_vizionviewer; "
-ROOTFS_POSTPROCESS_COMMAND:append:mx8-nxp-bsp = "install_vizionviewer; "
+ROOTFS_POSTPROCESS_COMMAND:tn-vizionsdk += "install_vizionviewer; "
+ROOTFS_POSTPROCESS_COMMAND:remove:pico-imx8mq = "install_vizionviewer;"
 
 install_vizionviewer() {
 	#bbplain "---->>> Add weston launcher of VizionViewer"
