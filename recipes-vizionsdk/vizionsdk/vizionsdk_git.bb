@@ -9,8 +9,8 @@ PV = "git-${SRCPV}"
 SRC_URI += "file://88-cyusb.rules"
 
 DEPENDS += "tn-apt-list"
-RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', 'libdrm libudev', 'libdrm-dev libusb1', d)}"
-RDEPENDS:${PN} += "libudev bash"
+RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', 'libdrm', 'libudev libdrm-dev libusb1', d)}"
+RDEPENDS:${PN} += "bash"
 
 S = "${WORKDIR}/git/vizionsdk"
 
