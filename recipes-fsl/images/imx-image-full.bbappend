@@ -1,4 +1,4 @@
-ROOTFS_POSTPROCESS_COMMAND:tn-vizionsdk += "install_vizionviewer; "
+ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk = "install_vizionviewer; "
 ROOTFS_POSTPROCESS_COMMAND:remove:pico-imx8mq = "install_vizionviewer;"
 ROOTFS_POSTPROCESS_COMMAND:remove:edm-g-imx8mm = "install_vizionviewer;"
 
