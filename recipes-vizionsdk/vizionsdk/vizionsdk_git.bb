@@ -48,4 +48,7 @@ do_install() {
 	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${WORKDIR}/88-cyusb.rules
 	install -D -t ${D}${sysconfdir} -m 0644 ${_usr_d}/share/vizionsdk/driver/cyusb.conf
 	install -D -t ${D}/usr/local/bin -m 0755 ${_usr_d}/share/vizionsdk/driver/cy_renumerate.sh
+
+	# Install vizion-ctl
+	install -D -t ${D}/usr/local/bin -m 0755 ${_usr_d}/bin/vizion-ctl
 }
