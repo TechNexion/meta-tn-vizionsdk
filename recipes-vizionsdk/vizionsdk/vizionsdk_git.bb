@@ -50,5 +50,5 @@ do_install() {
 	install -D -t ${D}/usr/local/bin -m 0755 ${_usr_d}/share/vizionsdk/driver/cy_renumerate.sh
 
 	# Install vizion-ctl
-	install -D -t ${D}/usr/local/bin -m 0755 ${_usr_d}/bin/vizion-ctl
+	install -D -t ${D}/usr/bin -m 0755 ${_usr_d}/bin/vizion-ctl
 }
