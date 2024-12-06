@@ -1,4 +1,5 @@
-ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk = "install_vizionviewer; "
+ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk:mx9-generic-bsp = "install_vizionviewer; "
+ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk:mx8-generic-bsp = "install_vizionviewer; "
 ROOTFS_POSTPROCESS_COMMAND:remove:pico-imx8mq = "install_vizionviewer;"
 
 install_vizionviewer() {
