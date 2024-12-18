@@ -1,5 +1,6 @@
 ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk:mx9-generic-bsp = "install_vizionviewer; "
 ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk:mx8-generic-bsp = "install_vizionviewer; "
+ROOTFS_POSTPROCESS_COMMAND:remove:mx91-generic-bsp = "install_vizionviewer;"
 
 install_vizionviewer() {
 	#bbplain "---->>> Add weston launcher of VizionViewer"
