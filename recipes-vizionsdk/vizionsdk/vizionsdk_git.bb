@@ -15,7 +15,7 @@ RDEPENDS:${PN} += "bash"
 S = "${WORKDIR}/git/vizionsdk"
 
 INSANE_SKIP:${PN} += "dev-deps file-rdeps"
-FILES:${PN} += "/usr/local/bin/*"
+FILES:${PN} += "/usr/local/bin/* ${datadir}/vizionsdk/*"
 
 # keep package name as vizionsdk
 DEBIAN_NOAUTONAME:${PN} := "1"
@@ -51,4 +51,8 @@ do_install() {
 
 	# Install vizion-ctl
 	install -D -t ${D}/usr/bin -m 0755 ${_usr_d}/bin/vizion-ctl
+
+	install -d ${D}${datadir}/vizionsdk/driver
+	install -m 0644 ${S}${datadir}/vizionsdk/VxConfig.conf ${D}${datadir}/vizionsdk
+	install -m 0644 ${S}${datadir}/vizionsdk/driver/CyBootProgrammer.img ${D}${datadir}/vizionsdk/driver
 }
