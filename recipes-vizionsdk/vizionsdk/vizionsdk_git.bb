@@ -44,6 +44,20 @@ do_install() {
 		ln -snf ${_so} ${D}${libdir}/${_lib_n}
 	fi
 
+	# Install pkgconfig
+	install -D -t ${D}${libdir}/pkgconfig -m 0644 ${_usr_d}/lib/pkgconfig/vizionsdk.pc
+
+	# Install cmake config
+	install -D -t ${D}${libdir}/cmake/vizionsdk -m 0644 ${_usr_d}/lib/cmake/vizionsdk/vizionsdkConfig.cmake
+	install -D -t ${D}${libdir}/cmake/vizionsdk -m 0644 ${_usr_d}/lib/cmake/vizionsdk/vizionsdkConfigVersion.cmake
+	install -D -t ${D}${libdir}/cmake/vizionsdk -m 0644 ${_usr_d}/lib/cmake/vizionsdk/vizionsdkTargets.cmake
+	install -D -t ${D}${libdir}/cmake/vizionsdk -m 0644 ${_usr_d}/lib/cmake/vizionsdk/vizionsdkTargets-release.cmake
+
+	# Install header files
+	install -D -t ${D}${includedir}/vizionsdk -m 0644 ${_usr_d}/include/vizionsdk/LegacyAPI.h
+	install -D -t ${D}${includedir}/vizionsdk -m 0644 ${_usr_d}/include/vizionsdk/VizionSDK.h
+	install -D -t ${D}${includedir}/vizionsdk -m 0644 ${_usr_d}/include/vizionsdk/VxPublicTypes.hpp
+
 	# Install configurations of Cypress USB
 	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${WORKDIR}/88-cyusb.rules
 	install -D -t ${D}${sysconfdir} -m 0644 ${_usr_d}/share/vizionsdk/driver/cyusb.conf
