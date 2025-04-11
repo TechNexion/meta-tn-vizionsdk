@@ -4,7 +4,7 @@ LICENSE_FLAGS = "commercial_tn"
 
 inherit python3native
 
-MANYLINUX_VER = "2_37"
+MANYLINUX_VER = "2_34"
 PYVIZIONSDK_VER = "25.4.1"
 
 DEPENDS = "python3-pip-native"
