@@ -6,7 +6,8 @@ SRC_URI = "file://technexion.gpg file://vizionsdk.list"
 
 RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'gnupg', d)}"
 
-S = "${WORKDIR}"
+S = "${WORKDIR}/sources"
+UNPACKDIR = "${S}"
 
 do_install() {
 	# Install vizionsdk.list
