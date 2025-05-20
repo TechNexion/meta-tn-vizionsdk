@@ -59,7 +59,7 @@ do_install() {
 	install -D -t ${D}${includedir}/vizionsdk -m 0644 ${_usr_d}/include/vizionsdk/VxPublicTypes.hpp
 
 	# Install configurations of Cypress USB
-	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${WORKDIR}/88-cyusb.rules
+	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${UNPACKDIR}/88-cyusb.rules
 	install -D -t ${D}${sysconfdir} -m 0644 ${_usr_d}/share/vizionsdk/driver/cyusb.conf
 	install -D -t ${D}/usr/local/bin -m 0755 ${_usr_d}/share/vizionsdk/driver/cy_renumerate.sh
 
