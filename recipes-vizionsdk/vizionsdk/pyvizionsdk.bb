@@ -7,6 +7,8 @@ inherit python3native
 MANYLINUX_VER = "2_34"
 PYVIZIONSDK_VER = "25.4.1"
 
+do_install[network] = "1"
+
 DEPENDS = "python3-pip-native"
 RDEPENDS:${PN} = "\
     python3-core \
@@ -19,36 +21,33 @@ RDEPENDS:${PN} = "\
     python3-fcntl \
     python3-io \
     python3-logging \
+    python3-inquirer \
+    python3-blessed \
+    python3-readchar \
 "
 
 do_install() {
-    ${STAGING_BINDIR_NATIVE}/pip3 install --disable-pip-version-check \
-        -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps inquirer
-    ${STAGING_BINDIR_NATIVE}/pip3 install --disable-pip-version-check \
-        -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps blessed
-    ${STAGING_BINDIR_NATIVE}/pip3 install --disable-pip-version-check \
-        -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps readchar
     ${STAGING_BINDIR_NATIVE}/pip3 install --disable-pip-version-check --platform manylinux_${MANYLINUX_VER}_${TARGET_ARCH} \
-        -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps \
+        -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps --trusted-host pypi.vizionsdk.com \
         pyvizionsdk==${PYVIZIONSDK_VER} -i https://pypi.vizionsdk.com/root/pyvizionsdk/+simple/
 
-    sed -i -e '1s@#!/bin/sh@#!/usr/bin/python3@' -e "/'''/,/'''/d" ${WORKDIR}/image/usr/lib/python*/site-packages/bin/pyvizion-ctl
-    install -d ${D}${bindir}
-    install -m 0755 ${WORKDIR}/image/usr/lib/python*/site-packages/bin/pyvizion-ctl ${D}${bindir}
-    rm -rf ${WORKDIR}/image/usr/lib/python*/site-packages/bin
+    PYVIZION_CTL_SCRIPT=$(find ${D}${PYTHON_SITEPACKAGES_DIR} -name pyvizion-ctl)
+    if [ -f "$PYVIZION_CTL_SCRIPT" ]; then
+        install -d ${D}${bindir}
+        sed -i -e '1s@.*@#!/usr/bin/env python3@' "$PYVIZION_CTL_SCRIPT"
+        sed -i 's|${TMPDIR}|/usr/bin|g' "$PYVIZION_CTL_SCRIPT"
+        install -m 0755 "$PYVIZION_CTL_SCRIPT" ${D}${bindir}/
+        rm -rf $(dirname "$PYVIZION_CTL_SCRIPT")
+    else
+        bbfatal "pyvizion-ctl script not found after pip install. Check the contents of the aarch64 wheel."
+    fi
 }
 
-INSANE_SKIP:${PN} = "already-stripped file-rdeps"
+INSANE_SKIP:${PN} = "already-stripped file-rdeps buildpaths"
 
 FILES:${PN} = "\
     ${bindir}/pyvizion-ctl \
     ${libdir}/python*/site-packages/pyvizionsdk \
     ${libdir}/python*/site-packages/pyvizionsdk-*.dist-info \
     ${libdir}/python*/site-packages/pyvizionsdk.libs \
-    ${libdir}/python*/site-packages/inquirer \
-    ${libdir}/python*/site-packages/inquirer-*.dist-info \
-    ${libdir}/python*/site-packages/blessed \
-    ${libdir}/python*/site-packages/blessed-*.dist-info \
-    ${libdir}/python*/site-packages/readchar \
-    ${libdir}/python*/site-packages/readchar-*.dist-info \
 "
