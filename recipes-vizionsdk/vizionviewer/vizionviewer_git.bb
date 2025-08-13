@@ -13,7 +13,7 @@ RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '
 S = "${WORKDIR}/git/vizionviewer"
 
 INSANE_SKIP:${PN} += "dev-deps file-rdeps already-stripped useless-rpaths"
-FILES:${PN} += "/opt/* ${datadir}/polkit-1/actions/* ${sysconfdir}/xdg/weston/*"
+FILES:${PN} += "/opt/* ${sysconfdir}/xdg/weston/*"
 
 EXCLUDE_FROM_SHLIBS = "1"
 
@@ -29,5 +29,4 @@ do_install() {
 
 		# Install desktop icon
 	install -D -t ${D}${datadir}/applications -m 0755 ${S}/usr/share/applications/*
-	install -D -t ${D}${datadir}/polkit-1/actions -m 0644 ${S}/usr/share/polkit-1/actions/*
 }
