@@ -12,7 +12,7 @@ RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '
 
 S = "${WORKDIR}/git/vizionviewer"
 
-INSANE_SKIP:${PN} += "dev-deps file-rdeps already-stripped useless-rpaths"
+INSANE_SKIP:${PN} += "dev-deps file-rdeps already-stripped useless-rpaths ldflags"
 FILES:${PN} += "/opt/* ${sysconfdir}/xdg/weston/*"
 
 EXCLUDE_FROM_SHLIBS = "1"
