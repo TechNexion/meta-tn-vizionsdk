@@ -5,7 +5,7 @@ LICENSE_FLAGS = "commercial_tn"
 inherit python3native
 
 MANYLINUX_VER = "2_31"
-PYVIZIONSDK_VER = "25.8.1"
+PYVIZIONSDK_VER = "25.9.3"
 
 do_install[network] = "1"
 

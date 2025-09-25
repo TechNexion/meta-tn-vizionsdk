@@ -2,7 +2,7 @@ SRCSERVER = "git://github.com/TechNexion-Vision/vizionviewer.git;protocol=https"
 SRCOPTIONS = ""
 SRCBRANCH = "main"
 SRC_URI = "${SRCSERVER};branch=${SRCBRANCH};${SRCOPTIONS}"
-SRCREV = "a8b15314cabd5ead124b094b1c5a0a511758dad3"
+SRCREV = "ce700676776a2165ff359e01a930fbda3cf279b4"
 
 python do_package:prepend() {
     # Get package version from debian package control file
