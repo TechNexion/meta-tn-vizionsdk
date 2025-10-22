@@ -7,6 +7,15 @@ RDEPENDS:${PN} += "bash vizionsdk libjpeg-turbo"
 
 S = "${UNPACKDIR}"
 
+# These are private plugin libraries, not system libraries
+PRIVATE_LIBS = "\
+    libvideo_record_plugin.so \
+    libvizionsdk_elinux_plugin.so \
+    libnative_window_control_elinux_plugin.so \
+    libimage_capture_elinux_plugin.so \
+    libvideo_output_elinux_plugin.so \
+"
+
 FILES:${PN} = "/opt/* \
                ${datadir}/applications/* \
                ${bindir}/vizionviewer \
