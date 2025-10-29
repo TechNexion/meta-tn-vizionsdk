@@ -2,7 +2,7 @@ SUMMARY = "TechNexion VizionSDK"
 LICENSE = "CLOSED"
 LICENSE_FLAGS = "commercial_tn"
 
-PV = "25.10.1"
+PV = "25.10.2"
 
 SRC_URI = "https://download.technexion.com/vizionviewer/linux_arm64/vizionviewer-${PV}-linuxarm64.tar.xz"
-SRC_URI[sha256sum] = "a70361a94f304f783e776a055fd7f6509305b416f446513155340f4128b7788f"
+SRC_URI[sha256sum] = "48b3697f0ba8fc6bbc3fb11a1fe1ff4e0f65df2a2ddb7c46b0e621fc472e4884"
