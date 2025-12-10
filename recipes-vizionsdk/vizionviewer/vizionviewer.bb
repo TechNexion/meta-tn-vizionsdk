@@ -14,6 +14,10 @@ PRIVATE_LIBS = "\
     libnative_window_control_elinux_plugin.so \
     libimage_capture_elinux_plugin.so \
     libvideo_output_elinux_plugin.so \
+    libvizionsdk_plugin.so \
+    libvideo_output_plugin.so \
+    libimage_capture_plugin.so \
+    libpxpconverter_plugin.so \
 "
 
 FILES:${PN} = "/opt/* \
