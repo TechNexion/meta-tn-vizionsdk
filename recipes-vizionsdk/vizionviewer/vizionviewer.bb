@@ -3,7 +3,7 @@ SUMMARY = "TechNexion VizionViewer"
 require recipes-vizionsdk/vizionsdk.inc
 
 DEPENDS = "vizionsdk"
-RDEPENDS:${PN} += "bash vizionsdk libjpeg-turbo"
+RDEPENDS:${PN} += "bash vizionsdk libjpeg-turbo libxkbcommon"
 
 S = "${UNPACKDIR}"
 
