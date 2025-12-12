@@ -4,6 +4,7 @@ require recipes-vizionsdk/vizionsdk.inc
 
 DEPENDS = "vizionsdk"
 RDEPENDS:${PN} += "bash vizionsdk libjpeg-turbo libxkbcommon"
+RDEPENDS:${PN}:mx95-nxp-bsp += "bash vizionsdk libjpeg-turbo libxkbcommon mali-imx-libgles2"
 
 S = "${UNPACKDIR}"
 
