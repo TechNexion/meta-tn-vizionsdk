@@ -6,7 +6,7 @@ DEPENDS = "vizionsdk"
 RDEPENDS:${PN} += "bash vizionsdk libjpeg-turbo libxkbcommon"
 RDEPENDS:${PN}:mx95-nxp-bsp += "bash vizionsdk libjpeg-turbo libxkbcommon mali-imx-libgles2"
 
-S = "${UNPACKDIR}"
+S = "${WORKDIR}"
 
 # These are private plugin libraries, not system libraries
 PRIVATE_LIBS = "\
@@ -36,7 +36,7 @@ SOLIBS = ".so"
 FILES_SOLIBSDEV = ""
 
 do_install() {
-    cd ${UNPACKDIR}
+    cd ${WORKDIR}
     # Extract the .deb using ar
     ar x vizionviewer.deb
     # Extract data.tar.* without preserving ownership

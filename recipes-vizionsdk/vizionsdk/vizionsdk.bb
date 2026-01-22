@@ -4,7 +4,7 @@ SRC_URI += "file://88-cyusb.rules"
 
 RDEPENDS:${PN} = "libusb1 udev bash"
 
-S = "${UNPACKDIR}"
+S = "${WORKDIR}"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -32,9 +32,9 @@ INHIBIT_PACKAGE_STRIP = "1"
 
 do_install() {
 	# Install configurations of Cypress USB
-	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${UNPACKDIR}/88-cyusb.rules
+	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${WORKDIR}/88-cyusb.rules
 
-    cd ${UNPACKDIR}
+    cd ${WORKDIR}
     # Extract the .deb using ar
     ar x vizionsdk.deb
     # Extract data.tar.* without preserving ownership
