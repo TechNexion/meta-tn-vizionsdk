@@ -10,15 +10,15 @@ S = "${UNPACKDIR}"
 
 # These are private plugin libraries, not system libraries
 PRIVATE_LIBS = "\
+    libflutter_elinux_wayland.so \
     libvideo_record_plugin.so \
-    libvizionsdk_elinux_plugin.so \
-    libnative_window_control_elinux_plugin.so \
-    libimage_capture_elinux_plugin.so \
-    libvideo_output_elinux_plugin.so \
     libvizionsdk_plugin.so \
-    libvideo_output_plugin.so \
+    libnative_window_control_elinux_plugin.so \
     libimage_capture_plugin.so \
+    libvideo_output_plugin.so \
     libpxpconverter_plugin.so \
+    libimu_viewer_3d_plugin.so \
+    libonvif_client_plugin.so \
 "
 
 FILES:${PN} = "/opt/* \
