@@ -4,6 +4,8 @@ LICENSE_FLAGS = "commercial_tn"
 
 SRC_URI = "file://technexion.gpg file://vizionsdk.list"
 
+S = "${UNPACKDIR}"
+
 RDEPENDS:${PN} += "${@bb.utils.contains_any('UBUNTU_TARGET_ARCH', 'arm64 arm', '', 'gnupg', d)}"
 
 do_install() {
