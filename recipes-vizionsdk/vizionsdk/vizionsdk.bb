@@ -9,22 +9,23 @@ S = "${UNPACKDIR}"
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
-# Main package: runtime libraries, udev rules, and data files
+# Keep the upstream Debian package monolithic. The TechNexion-hosted
+# vizionsdk .deb owns headers in the main package, so splitting these files into
+# vizionsdk-dev in the Yocto image makes local apt upgrades fail on overwrite.
+PACKAGES = "${PN}"
+
+# Main package: runtime libraries, development files, udev rules, and data files
 FILES:${PN} = "${libdir}/libVizionSDK.so.* \
+               ${libdir}/libVizionSDK.so \
+               ${libdir}/cmake/vizionsdk/* \
+               ${libdir}/pkgconfig/* \
+               ${includedir}/* \
                ${sysconfdir}/udev/rules.d/88-cyusb.rules \
                ${datadir}/vizionsdk/* \
                ${bindir}/vizion-ctl \
 "
 
-# Development package (CMake files, headers, .so symlinks)
-FILES:${PN}-dev = "${includedir}/* \
-                   ${libdir}/libVizionSDK.so \
-                   ${libdir}/cmake/vizionsdk/* \
-                   ${libdir}/pkgconfig/* \
-"
-
 INSANE_SKIP:${PN} += "already-stripped ldflags file-rdeps dev-so"
-INSANE_SKIP:${PN}-dev += "dev-elf"
 
 # Don't try to strip or create debug packages
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"

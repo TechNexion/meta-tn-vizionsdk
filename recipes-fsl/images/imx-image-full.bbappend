@@ -1,3 +1,9 @@
+VIZIONSDK_IMAGE_PACKAGES = "vizionsdk vizionviewer pyvizionsdk tn-apt-list"
+
+IMAGE_INSTALL:remove:tn-vizionsdk = "packagegroup-tn-vizionsdk"
+CORE_IMAGE_EXTRA_INSTALL:remove:tn-vizionsdk = "packagegroup-tn-vizionsdk"
+IMAGE_INSTALL:append:tn-vizionsdk = " ${VIZIONSDK_IMAGE_PACKAGES}"
+
 ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk:mx9-generic-bsp = "install_vizionviewer; "
 ROOTFS_POSTPROCESS_COMMAND:append:tn-vizionsdk:mx8-generic-bsp = "install_vizionviewer; "
 ROOTFS_POSTPROCESS_COMMAND:remove:mx91-generic-bsp = "install_vizionviewer;"
