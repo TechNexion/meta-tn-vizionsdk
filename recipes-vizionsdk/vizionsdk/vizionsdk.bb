@@ -6,6 +6,8 @@ RDEPENDS:${PN} = "libusb1 udev bash"
 
 S = "${UNPACKDIR}"
 
+COMPATIBLE_HOST = "aarch64.*-linux"
+
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
