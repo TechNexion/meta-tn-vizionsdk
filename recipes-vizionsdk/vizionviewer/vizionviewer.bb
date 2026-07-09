@@ -10,8 +10,7 @@ S = "${UNPACKDIR}"
 
 # These are private plugin libraries, not system libraries
 PRIVATE_LIBS = "\
-    libflutter_elinux_wayland.so \
-    libfvp_plugin.so \
+    libcamera_focus_plugin.so \
     libimage_capture_plugin.so \
     libimu_viewer_3d_plugin.so \
     libpxpconverter_plugin.so \
