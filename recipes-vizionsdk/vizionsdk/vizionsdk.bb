@@ -22,8 +22,10 @@ FILES:${PN} = "${libdir}/libVizionSDK.so.* \
                ${libdir}/cmake/vizionsdk/* \
                ${libdir}/pkgconfig/* \
                ${includedir}/* \
+               ${sysconfdir}/cyusb.conf \
                ${sysconfdir}/udev/rules.d/88-cyusb.rules \
                ${datadir}/vizionsdk/* \
+               ${bindir}/cy_renumerate.sh \
                ${bindir}/vizion-ctl \
 "
 
@@ -34,13 +36,15 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
 
 do_install() {
-	# Install configurations of Cypress USB
-	install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${UNPACKDIR}/88-cyusb.rules
-
     cd ${UNPACKDIR}
     # Extract the .deb using ar
     ar x vizionsdk.deb
     # Extract data.tar.* without preserving ownership
     tar --no-same-owner -xf data.tar.* -C ${D}
     rm -f control.tar.* data.tar.* debian-binary
+
+    # Install configurations of Cypress USB
+    install -D -t ${D}${sysconfdir}/udev/rules.d -m 0644 ${UNPACKDIR}/88-cyusb.rules
+    install -D -t ${D}${sysconfdir} -m 0644 ${D}${datadir}/vizionsdk/driver/cyusb.conf
+    install -D -t ${D}${bindir} -m 0755 ${D}${datadir}/vizionsdk/driver/cy_renumerate.sh
 }
